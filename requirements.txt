@@ -1,0 +1,6 @@
+Flask
+ping3
+wakeonlan
+Werkzeug
+jsonify
+pywin32
