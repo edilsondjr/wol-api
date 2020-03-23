@@ -54,4 +54,7 @@ def delete_mac(mac_id):
 @app.route(base_url+'/ping/<int:ip_id>', methods=['GET'])
 def ping_id(ip_id):
     pings = ping_host(ip_id)
-    return json.dumps(pings)
+    if pings is not None:
+        return json.dumps(pings)
+    else:
+        return 'Invalid ID, please provide a valid one'
