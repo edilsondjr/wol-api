@@ -2,15 +2,17 @@ from wakeonlan import send_magic_packet
 from config import connect, connect_row_factory
 from dao import *
 from ping3 import *
+from platform import *
 
-
-def ping_host(mac_id):
-    ip = query_macs(mac_id)[0][2]
-    sping = ping(ip, timeout=1)
-    if sping is not None:
-        return True
-    else:
-        return False
+def ping_host(ip_id):
+    ips = list(query_macs(ip_id))
+    for ip in ips:
+        dumpip = str(ip['ip'])
+        sping = ping(dumpip, timeout=1)
+        if sping is not None:
+            return True
+        else:
+            return False
 
 
 def add_mac(name, ip, mac):
@@ -53,3 +55,10 @@ def send_packet_one(mac_id):
     for mac in macs:
         dumpmac = str(mac['mac'])
         send_magic_packet(dumpmac)
+
+
+def get_info(ip_id):
+    is_on = ping_host(ip_id)
+    if is_on:
+        pass
+

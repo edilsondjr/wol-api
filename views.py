@@ -1,6 +1,6 @@
 from wol import app
-from flask import request, jsonify
-from models import query_macs, send_packet_all, send_packet_one, add_mac, delete_host
+from flask import request, json, jsonify
+from models import *
 
 base_url = '/api/v1/'
 
@@ -49,3 +49,9 @@ def add_new():
 def delete_mac(mac_id):
     delete_host(mac_id)
     return 'The data has been deleted'
+
+
+@app.route(base_url+'/ping/<int:ip_id>', methods=['GET'])
+def ping_id(ip_id):
+    pings = ping_host(ip_id)
+    return json.dumps(pings)
