@@ -37,6 +37,7 @@ def add_new():
     ip = request.args.get('ip')
     mac = request.args.get('mac')
     fmac = f"{mac[0:2]}-{mac[2:4]}-{mac[4:6]}-{mac[6:8]}-{mac[8:10]}-{mac[10:12]}"
+    fmac = fmac.upper()
     try:
         add_mac(name, ip, fmac)
         return 'The data has been inserted'

@@ -6,8 +6,13 @@ services:
       dockerfile: ./Dockerfile
       context: .
     image: edilsondjr/wol-api
-    networks: 
+    networks:
       - wolapinetwork
     ports:
       - 5000:5000
     restart: always
+
+networks:
+  wolapinetwork:
+    name: wolapinetwork
+    driver: bridge

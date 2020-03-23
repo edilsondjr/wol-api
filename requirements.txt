@@ -3,4 +3,4 @@ ping3
 wakeonlan
 Werkzeug
 jsonify
-pywin32
+jinja2
