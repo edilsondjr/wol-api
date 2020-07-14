@@ -9,7 +9,6 @@ verify_ssl = true
 ping3 = "*"
 wakeonlan = "*"
 jsonify = "*"
-pywin32 = "*"
 Flask = "*"
 Werkzeug = "*"
 Jinja = "*"

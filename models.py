@@ -2,7 +2,7 @@ from wakeonlan import send_magic_packet
 from config import connect, connect_row_factory
 from dao import *
 from ping3 import *
-from platform import *
+
 
 def ping_host(ip_id):
     ips = list(query_macs(ip_id))
