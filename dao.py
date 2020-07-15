@@ -1,8 +1,0 @@
-SQL_DELETE = 'delete from hosts where id = ?'
-SQL_INCLUDE = 'INSERT into hosts (name, ip, mac) values(?,?,?)'
-SQL_LIST_MACS = 'select mac from hosts'
-SQL_LIST_ALL = 'select * from hosts'
-SQL_LIST_BY_ID = 'select * from hosts where id = ?'
-SQL_LIST_MAC_NAME = 'select host,mac from hosts where name = ?'
-SQL_LIST_MAC_HOST = 'select host,mac from hosts'
-SQL_GET_LAST_ID = 'select * from hosts where id = (select max(id) from hosts)'

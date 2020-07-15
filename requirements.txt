@@ -1,6 +1,0 @@
-Flask
-ping3
-wakeonlan
-Werkzeug
-jsonify
-jinja2

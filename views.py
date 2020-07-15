@@ -18,7 +18,7 @@ def index():
 @app.route(base_url+'all', methods=['GET'])
 def allmacs():
     lmacs = query_macs()
-    return jsonify(lmacs)
+    return lmacs
 
 
 @app.route(base_url+'/wake/<int:mac_id>', methods=['GET'])

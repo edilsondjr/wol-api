@@ -11,8 +11,8 @@ wakeonlan = "*"
 jsonify = "*"
 Flask = "*"
 Werkzeug = "*"
-Jinja = "*"
-jinja2 = "==2.11.1"
+Flask-SQLAlchemy = "2.4.4"
+Flask-serialize = "1.1.9"
 
 [requires]
 python_version = "3.8"

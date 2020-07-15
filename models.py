@@ -1,60 +1,48 @@
 from wakeonlan import send_magic_packet
-from config import connect, connect_row_factory
-from dao import *
+import config
 from ping3 import *
 
 
 def ping_host(ip_id):
-    ips = list(query_macs(ip_id))
-    for ip in ips:
-        dumpip = str(ip['ip'])
-        sping = ping(dumpip, timeout=1)
-        if sping is not None:
-            return True
-        else:
-            return False
+    mac = query_macs(ip_id).json
+    dumpip = mac['ip']
+    sping = ping(dumpip, timeout=1)
+    if sping is not None:
+        return True
+    else:
+        return False
 
 
 def add_mac(name, ip, mac):
-    conn = connect()
-    cursor = conn.cursor()
-    cursor.execute(SQL_INCLUDE, (name, ip, mac))
-    conn.commit()
-    cursor.close()
+    new_row = config.Hosts(name=name, ip=ip, mac=mac)
+    config.db.session.add(new_row)
+    config.db.session.commit()
 
 
 def delete_host(num):
-    conn = connect()
-    cursor = conn.cursor()
-    cursor.execute(SQL_DELETE, (num,))
-    conn.commit()
-    cursor.close()
+    config.Hosts.query.filter_by(id=num).delete()
+    config.db.session.commit()
 
 
 def query_macs(mac_id=None):
-    conn = connect_row_factory()
-    cursor = conn.cursor()
     if mac_id is None:
-        macs = cursor.execute(SQL_LIST_ALL)
-        macsd = macs.fetchall()
+        macs = config.Hosts.get_delete_put_post()
     else:
-        macs = cursor.execute(SQL_LIST_BY_ID, (mac_id,))
-        macsd = macs.fetchall()
-    return macsd
+        macs = config.Hosts.get_delete_put_post(mac_id)
+    return macs
 
 
 def send_packet_all():
-    macs = list(query_macs())
+    macs = query_macs().json
     for mac in macs:
-        dumpmac = str(mac['mac'])
+        dumpmac = mac['mac']
         send_magic_packet(dumpmac)
 
 
 def send_packet_one(mac_id):
-    macs = list(query_macs(mac_id))
-    for mac in macs:
-        dumpmac = str(mac['mac'])
-        send_magic_packet(dumpmac)
+    mac = query_macs(mac_id).json
+    dumpmac = mac['mac']
+    send_magic_packet(dumpmac)
 
 
 def get_info(ip_id):
