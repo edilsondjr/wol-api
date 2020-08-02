@@ -3,3 +3,4 @@ Dockerfile
 docker-compose.yml
 cache
 data.db
+wolapi.log
