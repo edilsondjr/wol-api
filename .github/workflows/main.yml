@@ -1,0 +1,11 @@
+- name: Deploy to Heroku Using Docker
+  uses: mtsmachado8/heroku-deploy@v2.0.3
+  with:
+    # Email Linked to your Heroku Account
+    email: edilsondjr@gmail.com
+    # Your Heroku API Key
+    api_key: 29d7fc2a-69f2-40ca-8bd6-f38f36a0bd5a
+    # Your Heroku App Name
+    app_name: wol-api
+    # Dokerfile path
+    dockerfile_path: .
