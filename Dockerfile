@@ -16,5 +16,4 @@ COPY ./ /app
 RUN python create_db.py
 
 ## Expose port and run the application
-EXPOSE 5000
 CMD ["python", "wol.py"]
