@@ -3,7 +3,7 @@ from flask import request, json, jsonify
 from models import *
 import logging
 
-logging.basicConfig(filename="wolapi.log",
+logging.basicConfig(stream=sys.stdout,
                     level=logging.INFO,
                     format='%(asctime)s %(message)s',
                     datefmt='%m/%d/%Y | %I:%M:%S %p | %Z |')
