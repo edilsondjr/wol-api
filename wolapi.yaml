@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wol-api
+  labels:
+    app: wol-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: wol-api
+  template:
+    metadata:
+      labels:
+        app: wol-api
+    spec:
+      containers:
+      - name: wol-api
+        image: edilsondjr/wol-api:1.0
+        ports:
+        - containerPort: 5000
